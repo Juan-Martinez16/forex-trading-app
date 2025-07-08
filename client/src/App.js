@@ -89,12 +89,10 @@ const ForexAssessmentApp = () => {
   // WebSocket connection
   useEffect(() => {
     // Connect to backend on port 5001
-    socketRef.current = io(
-      process.env.REACT_APP_WS_URL || "http://localhost:5001"
-    );
+    socketRef.current = io("https://forex-backend-69px.onrender.com");
 
     socketRef.current.on("connect", () => {
-      console.log("Connected to backend server on port 5001");
+      console.log("Connected to backend server");
       setConnectionStatus("connected");
       addAlert("Connected to trading server", "success");
     });
@@ -129,9 +127,7 @@ const ForexAssessmentApp = () => {
   const testApiConnection = async () => {
     try {
       const response = await fetch(
-        `${
-          process.env.REACT_APP_API_URL || "http://localhost:5001/api"
-        }/market-data`
+        "https://forex-backend-69px.onrender.com/api/market-data"
       );
       if (response.ok) {
         addAlert("API connection successful", "success");
